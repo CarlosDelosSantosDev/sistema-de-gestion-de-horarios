@@ -1,0 +1,150 @@
+﻿<Window x:Class="SistemaHorarios.MainDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sistema de Horarios - Dashboard" 
+        Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        ResizeMode="CanResize"
+        
+        Background="#FFF5F5F5">
+
+    <Grid>
+        <!-- Layout principal -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#FF1E3A5F" Padding="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo -->
+                <Viewbox Grid.Column="0" Width="40" Height="40">
+                    <Canvas Width="24" Height="24">
+                        <Path Fill="White" Data="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.36V17H13V13.36L12,13L5,13.36Z"/>
+                    </Canvas>
+                </Viewbox>
+
+                <!-- Título y bienvenida -->
+                <StackPanel Grid.Column="1" Margin="15,0,0,0">
+                    <TextBlock Text="SISTEMA DE GESTIÓN DE HORARIOS" 
+                             Foreground="White" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock x:Name="txtWelcome" Text="Bienvenido" 
+                             Foreground="#FFB0BEC5" FontSize="14"/>
+                </StackPanel>
+
+                <!-- Botón salir -->
+                <Button Grid.Column="2" Content="Cerrar Sesión" 
+                      Background="Transparent" Foreground="White"
+                      BorderBrush="#FF4ECDC4" BorderThickness="1"
+                      Padding="15,5" Cursor="Hand"
+                      Click="BtnLogout_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- Contenido Principal -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Panel de Navegación -->
+            <Border Grid.Column="0" Background="White" CornerRadius="8" Margin="0,0,20,0">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                </Border.Effect>
+
+                <StackPanel Margin="15">
+                    <TextBlock Text="NAVEGACIÓN" 
+                             Foreground="#FF546E7A" FontSize="12" FontWeight="Bold"
+                             Margin="0,0,0,20"/>
+
+                    <!-- Botones de Gestión Académica -->
+                    <Button x:Name="btnProfesores" Content="👥 Profesores" 
+                          Style="{StaticResource MenuButtonStyle}"
+                          Tag="Profesores" Click="MenuButton_Click"/>
+
+                    <Button x:Name="btnMaterias" Content="📚 Materias" 
+                          Style="{StaticResource MenuButtonStyle}"
+                          Tag="Materias" Click="MenuButton_Click"/>
+
+                    <Button x:Name="btnGrupos" Content="👥 Grupos" 
+                          Style="{StaticResource MenuButtonStyle}"
+                          Tag="Grupos" Click="MenuButton_Click"/>
+
+                    <Button x:Name="btnCarreras" Content="🎓 Carreras" 
+                          Style="{StaticResource MenuButtonStyle}"
+                          Tag="Carreras" Click="MenuButton_Click"/>
+
+                    <Separator Margin="0,20,0,20" Background="#FFEEEEEE"/>
+
+                    <!-- Botones de Horarios -->
+                    <Button x:Name="btnVerHorarios" Content="📅 Ver Horarios" 
+                          Style="{StaticResource MenuButtonStyle}"
+                          Tag="Horarios" Click="MenuButton_Click"/>
+
+                    <Button x:Name="btnCrearHorario" Content="➕ Crear Horario" 
+                          Style="{StaticResource MenuButtonStyle}"
+                          Tag="CrearHorario" Click="MenuButton_Click"/>
+
+                    <Separator Margin="0,20,0,100" Background="#FFEEEEEE"/>
+
+                    <!-- Boton de soporte -->
+                    <Button x:Name="Soporte" Content="🛠️ Soporte técnico" 
+                          Style="{StaticResource MenuButtonStyle}"
+                          Tag="MostrarSoporte" Click="MenuButton_Click"/>
+
+                </StackPanel>
+            </Border>
+
+            <!-- Panel de Contenido -->
+            <Border Grid.Column="1" Background="White" CornerRadius="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                </Border.Effect>
+
+                <Grid>
+                    <!-- Mensaje de bienvenida -->
+                    <StackPanel x:Name="panelWelcome" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Viewbox Width="80" Height="80" Margin="0,0,0,20">
+                            <Canvas Width="24" Height="24">
+                                <Path Fill="#FF1E3A5F" Data="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.36V17H13V13.36L12,13L5,13.36Z"/>
+                            </Canvas>
+                        </Viewbox>
+
+                        <TextBlock Text="¡Bienvenido al Sistema!" 
+                                 Foreground="#FF1E3A5F" FontSize="20" FontWeight="Bold"
+                                 HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                        <TextBlock x:Name="txtUserWelcome" Text="¿Qué deseas hacer hoy?" 
+                                 Foreground="#FF546E7A" FontSize="14"
+                                 HorizontalAlignment="Center" TextAlignment="Center"/>
+
+                        <TextBlock Text="Selecciona una opción del menú lateral para comenzar" 
+                                 Foreground="#FF90A4AE" FontSize="12"
+                                 HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                    </StackPanel>
+
+                    <!-- Contenedor para las tablas y contenido dinámico -->
+                    <ContentControl x:Name="contentArea" Visibility="Collapsed"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Footer -->
+        <Border Grid.Row="2" Background="#FFEEEEEE" Padding="10">
+            <TextBlock Text="© 2025 Dynamic Studios - Sistema de Gestión de Horarios" 
+                     Foreground="#FF90A4AE" FontSize="11"
+                     HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>

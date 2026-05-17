@@ -1,0 +1,41 @@
+﻿<Window x:Class="SistemaHorarios.VentanaPrevisualizacionImpresion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Previsualización de Horario" 
+        Width="1056" Height="816"  
+    WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowState="Normal">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Botones -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Button Content="🖨️ IMPRIMIR" Click="BtnImprimir_Click" 
+                    Background="#FF1E3A5F" Foreground="White" FontWeight="Bold"
+                    Width="120" Height="35" Margin="5"/>
+            <Button Content="❌ CERRAR" Click="BtnCerrar_Click"
+                    Background="#FFD32F2F" Foreground="White" FontWeight="Bold"
+                    Width="100" Height="35" Margin="5"/>
+        </StackPanel>
+
+        <!-- CONTENIDO PRINCIPAL CON SCROLL -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Border x:Name="borderImprimible" Background="White" BorderBrush="LightGray" BorderThickness="1" 
+                    Width="1056" Height="816">
+                <!-- Tamaño carta horizontal -->
+                <Grid x:Name="gridContenidoPrincipal">
+                    <!-- El contenido se generará dinámicamente aquí -->
+                </Grid>
+            </Border>
+        </ScrollViewer>
+
+        <TextBlock Grid.Row="2" Text="Formato carta horizontal - Desplaza para ver todo el contenido" 
+                   FontSize="10" Foreground="Gray" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+    </Grid>
+</Window>

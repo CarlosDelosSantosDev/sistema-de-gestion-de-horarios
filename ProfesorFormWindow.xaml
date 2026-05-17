@@ -1,0 +1,92 @@
+﻿<Window x:Class="SistemaHorarios.ProfesorFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Formulario de Profesor" 
+        Height="500" Width="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+   
+        SizeToContent="WidthAndHeight"
+    
+        MinWidth="500" MinHeight="450">
+    
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Título -->
+            <TextBlock Grid.Row="0" Text="{Binding Titulo}" 
+                     FontSize="18" FontWeight="Bold" 
+                     Foreground="#FF1E3A5F" Margin="0,0,0,20"/>
+
+            <!-- Formulario -->
+            <StackPanel Grid.Row="1" Width="500">
+                <!-- Más ancho -->
+                <!-- Número de Trabajador -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Número de Trabajador*" 
+                             Foreground="#FF546E7A" FontSize="12" FontWeight="Medium"
+                             Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtNumeroTrabajador" 
+                           Height="40" Padding="10" 
+                           Background="#FFF5F5F5" Foreground="#FF37474F"
+                           BorderBrush="#FFE0E0E0" BorderThickness="1"
+                           FontSize="14"/>
+                </StackPanel>
+
+                <!-- Nombre -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Nombre*" 
+                             Foreground="#FF546E7A" FontSize="12" FontWeight="Medium"
+                             Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtNombre" 
+                           Height="40" Padding="10"
+                           Background="#FFF5F5F5" Foreground="#FF37474F"
+                           BorderBrush="#FFE0E0E0" BorderThickness="1"
+                           FontSize="14"/>
+                </StackPanel>
+
+                <!-- Apellido Paterno -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Apellido Paterno*" 
+                             Foreground="#FF546E7A" FontSize="12" FontWeight="Medium"
+                             Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtApellidoPaterno" 
+                           Height="40" Padding="10"
+                           Background="#FFF5F5F5" Foreground="#FF37474F"
+                           BorderBrush="#FFE0E0E0" BorderThickness="1"
+                           FontSize="14"/>
+                </StackPanel>
+
+                <!-- Apellido Materno -->
+                <StackPanel Margin="0,0,0,20">
+                    <TextBlock Text="Apellido Materno" 
+                             Foreground="#FF546E7A" FontSize="12" FontWeight="Medium"
+                             Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtApellidoMaterno" 
+                           Height="40" Padding="10"
+                           Background="#FFF5F5F5" Foreground="#FF37474F"
+                           BorderBrush="#FFE0E0E0" BorderThickness="1"
+                           FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Botones -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Cancelar" Width="100" Height="40" 
+                      Background="Transparent" Foreground="#FF546E7A"
+                      BorderBrush="#FFE0E0E0" BorderThickness="1"
+                      Margin="0,0,10,0" Click="BtnCancelar_Click"/>
+
+                <Button Content="Guardar" Width="100" Height="40" 
+                      Background="#FF1E3A5F" Foreground="White"
+                      BorderThickness="0" Click="BtnGuardar_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

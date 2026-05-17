@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="SistemaHorarios.SoporteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#FFF5F5F5">
+
+    <UserControl.Resources>
+        <!-- Style para los TextBlock clickeables -->
+        <Style x:Key="ClickableTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF546E7A"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="TextDecorations" Value="None"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF1E90FF"/>
+                    <!-- Azul al pasar el mouse -->
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,30">
+            <TextBlock Text="Centro de Soporte Técnico 🛠️"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       Foreground="#FF1E3A5F"
+                       Margin="0,10,0,5"/>
+            <TextBlock Text="¿Necesitas ayuda? Ponte en contacto con nuestro equipo de soporte." 
+                       FontSize="14"
+                       Foreground="#FF546E7A"/>
+        </StackPanel>
+
+        <!-- Tarjetas de contacto -->
+        <UniformGrid Grid.Row="1" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+
+            <!-- Contacto 1 -->
+            <Border CornerRadius="12" Background="White" Padding="20" Margin="10">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center">
+                    <Ellipse Width="60" Height="60" Fill="#FF1E3A5F">
+                        <Ellipse.Effect>
+                            <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <TextBlock Text="EVELYN VALERIA FRAUSTO RODRÍGUEZ"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="#FF1E3A5F"
+                               Margin="0,15,0,5" TextAlignment="Center"/>
+
+                    <!-- Correo -->
+                    <TextBlock Text="Correo: valeriarodriguez2452@gmail.com"
+                               Style="{StaticResource ClickableTextBlock}"
+                               TextAlignment="Center"
+                               MouseDown="Correo_Click"
+                               Tag="valeriarodriguez2452@gmail.com"/>
+                    <!-- Teléfono -->
+                    <TextBlock Text="Teléfono: +52 81 4709 2588"
+                               Style="{StaticResource ClickableTextBlock}"
+                               TextAlignment="Center"
+                               MouseDown="WhatsApp_Click"
+                               Tag="528147092588"/>
+
+                    <TextBlock Text="Horario: Lunes a Viernes, 9:00 - 14:00"
+                               FontSize="12" Foreground="#FF90A4AE"
+                               Margin="0,10,0,0" TextAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Contacto 2 -->
+            <Border CornerRadius="12" Background="White" Padding="20" Margin="10">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center">
+                    <Ellipse Width="60" Height="60" Fill="#FF4ECDC4">
+                        <Ellipse.Effect>
+                            <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <TextBlock Text="CARLOS EMILIO DE LOS SANTOS ORTIZ"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="#FF1E3A5F"
+                               Margin="0,15,0,5" TextAlignment="Center"/>
+
+                    <!-- Correo -->
+                    <TextBlock Text="Correo: co8017449@gmail.com"
+                               Style="{StaticResource ClickableTextBlock}"
+                               TextAlignment="Center"
+                               MouseDown="Correo_Click"
+                               Tag="co8017449@gmail.com"/>
+                    <!-- Teléfono -->
+                    <TextBlock Text="Teléfono: +52 871 516 8571"
+                               Style="{StaticResource ClickableTextBlock}"
+                               TextAlignment="Center"
+                               MouseDown="WhatsApp_Click"
+                               Tag="528715168571"/>
+
+                    <TextBlock Text="Horario: Lunes a Viernes, 9:00 - 14:00"
+                               FontSize="12" Foreground="#FF90A4AE"
+                               Margin="0,10,0,0" TextAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Contacto 3 -->
+            <Border CornerRadius="12" Background="White" Padding="20" Margin="10">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center">
+                    <Ellipse Width="60" Height="60" Fill="#FF546E7A">
+                        <Ellipse.Effect>
+                            <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                        </Ellipse.Effect>
+                    </Ellipse>
+                    <TextBlock Text="JOSE GUADALUPE MENDEZ ALVARADO"
+                               FontSize="16" FontWeight="Bold"
+                               Foreground="#FF1E3A5F"
+                               Margin="0,15,0,5" TextAlignment="Center"/>
+
+                    <!-- Correo -->
+                    <TextBlock Text="Correo: josemendez46714@gmail.com"
+                               Style="{StaticResource ClickableTextBlock}"
+                               TextAlignment="Center"
+                               MouseDown="Correo_Click"
+                               Tag="josemendez46714@gmail.com"/>
+                    <!-- Teléfono -->
+                    <TextBlock Text="Teléfono: +52 87 2182 7886"
+                               Style="{StaticResource ClickableTextBlock}"
+                               TextAlignment="Center"
+                               MouseDown="WhatsApp_Click"
+                               Tag="528721827886"/>
+
+                    <TextBlock Text="Horario: Lunes a Viernes, 9:00 - 14:00"
+                               FontSize="12" Foreground="#FF90A4AE"
+                               Margin="0,10,0,0" TextAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+        </UniformGrid>
+    </Grid>
+</UserControl>

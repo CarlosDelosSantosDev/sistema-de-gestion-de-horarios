@@ -1,0 +1,69 @@
+﻿<Window x:Class="SistemaHorarios.GrupoFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Formulario de Grupo" 
+        Height="500" Width="500"
+        WindowStartupLocation="CenterOwner"
+        MinWidth="450" MinHeight="450">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="{Binding Titulo}" 
+                     FontSize="18" FontWeight="Bold" 
+                     Foreground="#FF1E3A5F" Margin="0,0,0,20"/>
+
+            <StackPanel Grid.Row="1" Width="400">
+                <!-- Grado -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Grado*" FontWeight="Medium" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtGrado" Height="40" Padding="10" FontSize="14"/>
+                </StackPanel>
+
+                <!-- Sección -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Sección" FontWeight="Medium" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtSeccion" Height="40" Padding="10" FontSize="14"/>
+                </StackPanel>
+
+                <!-- Carrera -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Carrera*" FontWeight="Medium" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="cmbCarrera" Height="35" FontSize="14"
+                            DisplayMemberPath="Nombre"
+                            SelectedValuePath="IdCarrera"/>
+                </StackPanel>
+
+                <!-- Turno -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Turno*" FontWeight="Medium" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="cmbTurno" Height="35" FontSize="14"
+                            DisplayMemberPath="NombreTurno"
+                            SelectedValuePath="IdTurno"/>
+                </StackPanel>
+
+                <!-- ✅ MODALIDAD AGREGADA -->
+                <StackPanel Margin="0,0,0,20">
+                    <TextBlock Text="Modalidad*" FontWeight="Medium" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="cmbModalidad" Height="35" FontSize="14">
+                        <ComboBoxItem Content="PRESENCIAL" IsSelected="True"/>
+                        <ComboBoxItem Content="EN LÍNEA"/>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancelar" Width="80" Height="35" Margin="0,0,10,0"
+                      Click="BtnCancelar_Click"/>
+                <Button Content="Guardar" Width="80" Height="35" 
+                      Background="#FF1E3A5F" Foreground="White"
+                      Click="BtnGuardar_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

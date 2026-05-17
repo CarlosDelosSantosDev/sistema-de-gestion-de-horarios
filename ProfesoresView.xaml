@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="SistemaHorarios.ProfesoresView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="Auto" Width="Auto">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Gestión de Profesores" 
+                     FontSize="20" FontWeight="Bold" 
+                     Foreground="#FF1E3A5F"/>
+            <TextBlock Text="Administra los profesores del sistema" 
+                     Foreground="#FF546E7A" FontSize="14"/>
+        </StackPanel>
+
+        <!-- Botones de Acción -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,20">
+            <Button x:Name="btnAgregar" Content="➕ Agregar Profesor" 
+                  Background="#FF1E3A5F" Foreground="White" 
+                  Padding="15,8" Margin="0,0,10,0"
+                  Click="BtnAgregar_Click"/>
+
+            <Button x:Name="btnRefrescar" Content="🔄 Refrescar" 
+                  Background="#FF546E7A" Foreground="White" 
+                  Padding="15,8"
+                  Click="BtnRefrescar_Click"/>
+        </StackPanel>
+
+        <!-- SCROLLVIEWER PARA PODER HACER SCROLL -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                    Margin="0,0,0,20">
+
+            <!-- DataGrid - TABLA DE PROFESORES -->
+            <DataGrid x:Name="dgProfesores" 
+                    AutoGenerateColumns="False" CanUserAddRows="False"
+                    IsReadOnly="True" SelectionMode="Single" 
+                    SelectionUnit="FullRow" MinHeight="300">
+
+                <DataGrid.Columns>
+                    <!-- Columna Número de Trabajador -->
+                    <DataGridTextColumn Header="Núm. Trabajador" 
+                                      Binding="{Binding NumeroTrabajador}" 
+                                      Width="195" FontSize="12"/>
+
+                    <!-- Columna Nombre -->
+                    <DataGridTextColumn Header="Nombre" 
+                                      Binding="{Binding NombreDocente}" 
+                                      Width="195" FontSize="12"/>
+
+                    <!-- Columna Apellido Paterno -->
+                    <DataGridTextColumn Header="Apellido Paterno" 
+                                      Binding="{Binding ApellidoPaterno}" 
+                                      Width="196" FontSize="12"/>
+
+                    <!-- Columna Apellido Materno -->
+                    <DataGridTextColumn Header="Apellido Materno" 
+                                      Binding="{Binding ApellidoMaterno}" 
+                                      Width="196" FontSize="12"/>
+
+                    <!-- Columna Nombre Completo (calculado) -->
+                    <DataGridTextColumn Header="Nombre Completo" 
+                                      Binding="{Binding NombreCompleto}" 
+                                      Width="296" FontSize="12"/>
+
+                    <!-- Columna de Acciones -->
+                    <DataGridTemplateColumn Header="Acciones" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Botón Editar -->
+                                    <Button Content="✏️" Margin="2" Padding="8,5" 
+                                          Click="BtnEditar_Click" 
+                                          Tag="{Binding NumeroTrabajador}"
+                                          ToolTip="Editar profesor"
+                                          Background="Transparent" BorderThickness="0"/>
+
+                                    <!-- Botón Eliminar -->
+                                    <Button Content="🗑️" Margin="2" Padding="8,5" 
+                                          Click="BtnEliminar_Click" 
+                                          Tag="{Binding NumeroTrabajador}"
+                                          ToolTip="Eliminar profesor"
+                                          Background="Transparent" BorderThickness="0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </ScrollViewer>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="2" Background="#FFF5F5F5">
+            <TextBlock x:Name="txtStatus" Text="Listo" Foreground="#FF546E7A"/>
+        </StatusBar>
+    </Grid>
+</UserControl>

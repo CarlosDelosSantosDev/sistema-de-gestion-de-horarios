@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="SistemaHorarios.HorariosGuardadosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="600" Width="1200">
+    <Grid Margin="20">
+        <!-- VISTA 1: CARDS DE PERIODOS -->
+        <StackPanel x:Name="panelPeriodos" Visibility="Visible">
+            <TextBlock Text="SELECCIONA UN PERIODO PARA VER SUS HORARIOS" 
+                       FontSize="20" FontWeight="Bold" Foreground="#FF1E3A5F"
+                       HorizontalAlignment="Center" Margin="0,0,0,30"/>
+
+            <ItemsControl x:Name="itemsControlPeriodos">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="250" Height="120" Margin="15" 
+                                Background="White" CornerRadius="10"
+                                BorderBrush="#FF1E3A5F" BorderThickness="2"
+                                Cursor="Hand">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15" Opacity="0.2"/>
+                            </Border.Effect>
+
+                            <Button Background="Transparent" BorderThickness="0" 
+                                    Click="CardPeriodo_Click" Tag="{Binding}">
+                                <Button.Content>
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                Margin="10">
+                                        <TextBlock Text="📅" FontSize="28" HorizontalAlignment="Center" 
+                                                   Margin="0,0,0,5"/>
+                                        <TextBlock Text="{Binding Periodo}" FontSize="16" FontWeight="Bold" 
+                                                   Foreground="#FF1E3A5F" HorizontalAlignment="Center" 
+                                                   TextAlignment="Center" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding HorariosCount, StringFormat='{} {0} horario(s)'}" 
+                                                   FontSize="12" Foreground="#FF546E7A" 
+                                                   HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock x:Name="txtNoPeriodos" Text="No hay horarios guardados en ningún periodo" 
+                       FontSize="14" Foreground="Gray" HorizontalAlignment="Center" Margin="0,20,0,0"
+                       Visibility="Collapsed"/>
+        </StackPanel>
+
+        <!-- VISTA 2: HORARIOS EN FORMATO TRADICIONAL -->
+        <StackPanel x:Name="panelDetalleHorarios" Visibility="Collapsed">
+
+            <!-- Botones de acción -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,15" HorizontalAlignment="Center">
+                <Button Content="⬅️ VOLVER A PERIODOS" Width="150" Height="35" Margin="5"
+                Background="#FF546E7A" Foreground="White" FontWeight="Bold"
+                Click="BtnVolver_Click"/>
+                <Button x:Name="btnEditar" Content="✏️ EDITAR" Width="100" Height="35" Margin="5"
+                Background="#FF1E3A5F" Foreground="White" FontWeight="Bold"
+                Click="BtnEditar_Click"/>
+                <Button x:Name="btnEliminar" Content="🗑️ ELIMINAR" Width="100" Height="35" Margin="5"
+                Background="#FFD32F2F" Foreground="White" FontWeight="Bold"
+                Click="BtnEliminar_Click"/>
+                <Button x:Name="btnImprimir" Content="🖨️ IMPRIMIR" Width="100" Height="35" Margin="5"
+                Background="#FF388E3C" Foreground="White" FontWeight="Bold"
+                Click="BtnImprimir_Click"/>
+                <Button x:Name="btnImprimirTodo" Content="🖨️ IMPRIMIR TODO" Width="120" Height="35" Margin="5"
+                Background="#FF7B1FA2" Foreground="White" FontWeight="Bold"
+                Click="BtnImprimirTodo_Click"/>
+            </StackPanel>
+
+            <!-- ✅ AGREGAR ESTE TEXTBLOCK -->
+            <TextBlock x:Name="txtInstruccion" Text="Selecciona un horario para eliminarlo" 
+               FontSize="12" Foreground="Gray" HorizontalAlignment="Center" Margin="0,0,0,10"
+               Visibility="Collapsed"/>
+
+            <!-- Título del periodo -->
+            <TextBlock x:Name="txtTituloPeriodo" Text="HORARIOS DEL PERIODO" 
+               FontSize="18" FontWeight="Bold" Foreground="#FF1E3A5F"
+               HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <!-- ScrollViewer para la lista vertical de horarios -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="400">
+                <ItemsControl x:Name="itemsControlHorariosProfesores">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Cada horario de profesor - Hacer clickeable -->
+                            <Border x:Name="borderHorario" BorderBrush="#FF1E3A5F" BorderThickness="2" CornerRadius="5" 
+                            Margin="0,15,0,15" Background="White" Padding="10"
+                            MouseLeftButtonDown="BorderHorario_MouseLeftButtonDown"
+                            Cursor="Hand">
+                                <StackPanel>
+                                    <!-- Header con número y nombre del profesor -->
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <TextBlock Text="{Binding NumeroTrabajador}" 
+                                           FontSize="14" FontWeight="Bold"
+                                           Foreground="#FF1E3A5F" Margin="0,0,10,0"/>
+                                        <TextBlock Text="{Binding NombreProfesor}" 
+                                           FontSize="14" FontWeight="Bold"
+                                           Foreground="#FF1E3A5F"/>
+                                    </StackPanel>
+
+                                    <!-- Tabla de horario tradicional -->
+                                    <Grid x:Name="gridHorarioTradicional" ShowGridLines="True">
+                                        <!-- La tabla se creará dinámicamente en código -->
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <TextBlock x:Name="txtNoHorarios" Text="No hay horarios en este periodo" 
+               FontSize="14" Foreground="Gray" HorizontalAlignment="Center" Margin="0,20,0,0"
+               Visibility="Collapsed"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

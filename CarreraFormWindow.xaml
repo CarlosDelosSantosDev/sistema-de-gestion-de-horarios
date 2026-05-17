@@ -1,0 +1,45 @@
+﻿<Window x:Class="SistemaHorarios.CarreraFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Formulario de Carrera" 
+        Height="350" Width="500"
+        WindowStartupLocation="CenterOwner"
+        MinWidth="450" MinHeight="300">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="{Binding Titulo}" 
+                     FontSize="18" FontWeight="Bold" 
+                     Foreground="#FF1E3A5F" Margin="0,0,0,20"/>
+
+            <StackPanel Grid.Row="1" Width="400">
+                <!-- Nombre -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Nombre*" FontWeight="Medium" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtNombre" Height="45" Padding="10" FontSize="14"/>
+                </StackPanel>
+
+                <!-- Clave -->
+                <StackPanel Margin="0,0,0,20">
+                    <TextBlock Text="Clave*" FontWeight="Medium" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtClave" Height="45" Padding="10" FontSize="14"
+                           MaxLength="20"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancelar" Width="80" Height="35" Margin="0,0,10,0"
+                      Click="BtnCancelar_Click"/>
+                <Button Content="Guardar" Width="80" Height="35" 
+                      Background="#FF1E3A5F" Foreground="White"
+                      Click="BtnGuardar_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>
